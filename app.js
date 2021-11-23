@@ -144,10 +144,24 @@ const app = Vue.createApp({
         }
     },
     computed:{
-
+        selectedSeats(){
+            let seatCount = this.seats.filter((value) => value.type ==="selected");
+            return seatCount;
+        }
     },
     methods: {
-        
+        seatChoose(i){
+            let seatSelect = this.seats[i];
+            if(seatSelect.type==="sold" || seatSelect.type==="booked"){
+                alert('You can not select this seat');
+                return;
+            };
+            if(this.selectedSeats.length > 2){
+                alert('You can not select more than 3 seats');
+                return;
+            };
+            seatSelect.type = seatSelect.type=="available" ? 'selected':'available';
+        }
     },
     watch:{
 
