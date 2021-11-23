@@ -147,7 +147,15 @@ const app = Vue.createApp({
         selectedSeats(){
             let seatCount = this.seats.filter((value) => value.type ==="selected");
             return seatCount;
-        }
+        },
+        totalCost() {
+            let tc = 0;
+            this.selectedSeats.forEach((seat) => {
+              tc += seat.price;
+            });
+          
+            return tc;
+          }
     },
     methods: {
         seatChoose(i){
