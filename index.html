@@ -65,6 +65,12 @@
                             </tr>
                         </tbody>
                         </table>
+                        <p v-if = "appliedCoupon === null">Have a coupon? 
+                            <input type="text" v-model="couponCode" placeholder="10 digit coupon code">
+                        </p>
+                        <p v-else>
+                            Applied Coupon : {{appliedCoupon.code}}
+                        </p>
                     </div>
                 </div>
             </div>
