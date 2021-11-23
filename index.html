@@ -59,6 +59,10 @@
                                 <td>{{seat.name}}</td>
                                 <td>Tk. {{seat.price}}</td>
                             </tr>
+                            <tr v-if="appliedCoupon !== null">
+                                <th>Discount</th>
+                                <th>Tk. -{{appliedCoupon.discount}}</td>
+                            </tr>
                             <tr>
                                 <th>Total</th>
                                 <th>Tk. {{totalCost}}</td>
@@ -72,6 +76,18 @@
                             Applied Coupon : {{appliedCoupon.code}}
                         </p>
                     </div>
+
+                    <div class="info">
+                        <input type="text" placeholder="Name" v-model="name" />
+                        <input type="text" placeholder="Mobile" v-model="mobile" />
+                      </div>
+                      
+                      <button
+                        class="confirm-button"
+                        @click="confirm"
+                      >
+                        Confirm
+                      </button>
                 </div>
             </div>
         </div>

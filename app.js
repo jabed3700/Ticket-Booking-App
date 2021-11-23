@@ -1,6 +1,8 @@
 const app = Vue.createApp({
     data() {
         return {
+            name:"",
+            mobile:"",
             appliedCoupon: null,
             couponCode: "",
             coupons: [{
@@ -163,6 +165,9 @@ const app = Vue.createApp({
             this.selectedSeats.forEach((seat) => {
                 tc += seat.price;
             });
+            if(this.appliedCoupon!==null){
+                tc = tc-this.appliedCoupon.discount
+            }
 
             return tc;
         }
@@ -174,14 +179,22 @@ const app = Vue.createApp({
                 alert('You can not select this seat');
                 return;
             };
-           
-            seatSelect.type = seatSelect.type == "available" ? 'selected' : 'available';
-            
             if (this.selectedSeats.length > 2) {
                 alert('You can not select more than 3 seats');
                 return;
             };
-        }
+            seatSelect.type = seatSelect.type == "available" ? 'selected' : 'available';
+
+           
+        },
+        confirm() {
+            if (!this.name || !this.mobile) {
+              alert("Please enter name and mobile");
+              return;
+            }
+          
+            this.confirmed = true;
+          },
     },
     watch: {
         couponCode(newValue) {
