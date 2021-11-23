@@ -219,11 +219,14 @@
   }
   
   .seat:nth-child(4n -2) {
-    margin-right: 12px;
+    margin-right: 24px;
   }
   
   .seat:nth-child(4n -1) {
-    margin-left: 12px;
+    margin-left: 16px;
+  }
+  .seat:nth-child(4n) {
+    margin-right: 0px;
   }
   
   .cart {
