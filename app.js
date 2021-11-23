@@ -2,11 +2,13 @@ const app = Vue.createApp({
     data() {
         return {
             confirmed:false,
+            disableButton:false,
             name:"",
             mobile:"",
             appliedCoupon: null,
             couponCode: "",
-            coupons: [{
+            coupons: [
+                {
                     code: "100TAKAOFF",
                     discount: 100
                 },
@@ -171,7 +173,18 @@ const app = Vue.createApp({
             }
 
             return tc;
-        }
+        },
+        isDisabled(){
+            if (!this.name || !this.mobile) {
+                return !this.disableButton;
+              }
+          },
+          isComplete () {
+            return (
+              this.name != '' &&
+              this.mobile != ''
+            )
+          }
     },
     methods: {
         seatChoose(i) {
@@ -196,6 +209,20 @@ const app = Vue.createApp({
           
             this.confirmed = true;
           },
+         
+          resetData() {
+            this.confirmed = false;
+            this.name = "";
+            this.mobile = "";
+            this.appliedCoupon = null;
+          
+            this.seats.forEach((seat) => {
+              if (seat.type === "selected") {
+                seat.type = "sold";
+              }
+            });
+          }
+          
     },
     watch: {
         couponCode(newValue) {
