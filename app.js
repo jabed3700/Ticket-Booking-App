@@ -1,6 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
+            confirmed:false,
             name:"",
             mobile:"",
             appliedCoupon: null,
@@ -179,7 +180,7 @@ const app = Vue.createApp({
                 alert('You can not select this seat');
                 return;
             };
-            if (this.selectedSeats.length > 2) {
+            if (seatSelect.type == "available" && this.selectedSeats.length > 2) {
                 alert('You can not select more than 3 seats');
                 return;
             };
